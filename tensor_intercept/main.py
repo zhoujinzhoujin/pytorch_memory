@@ -40,7 +40,7 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 print(device, file=sys.stderr)
 net.to(device)
 print("net.to(device)", file=sys.stderr)
-print(f"memory_allocated  = {torch.cuda.memory_allocated()}", file=sys.stderr)
+#print(f"memory_allocated  = {torch.cuda.memory_allocated()}", file=sys.stderr)
 print("", file=sys.stderr)
 
 # Define the loss function and optimizer
@@ -56,34 +56,34 @@ for epoch in range(5):
         inputs, labels = data
         inputs, labels = inputs.to(device), labels.to(device)
         print("inputs, labels = inputs.to(device), labels.to(device)", file=sys.stderr)
-        print(f"memory_allocated  = {torch.cuda.memory_allocated()}", file=sys.stderr)
+#        print(f"memory_allocated  = {torch.cuda.memory_allocated()}", file=sys.stderr)
         print("", file=sys.stderr)
 
         # Zero the parameter gradients
         optimizer.zero_grad()
         print("optimizer.zero_grad()", file=sys.stderr)
-        print(f"memory_allocated  = {torch.cuda.memory_allocated()}", file=sys.stderr)
+#        print(f"memory_allocated  = {torch.cuda.memory_allocated()}", file=sys.stderr)
         print("", file=sys.stderr)
 
         # Forward + backward + optimize
         outputs = net(inputs)
         print("outputs = net(inputs)", file=sys.stderr)
-        print(f"memory_allocated  = {torch.cuda.memory_allocated()}", file=sys.stderr)
+#        print(f"memory_allocated  = {torch.cuda.memory_allocated()}", file=sys.stderr)
         print("", file=sys.stderr)
 
         loss = criterion(outputs, labels)
         print("loss = criterion(outputs, labels)", file=sys.stderr)
-        print(f"memory_allocated  = {torch.cuda.memory_allocated()}", file=sys.stderr)
+#        print(f"memory_allocated  = {torch.cuda.memory_allocated()}", file=sys.stderr)
         print("", file=sys.stderr)
 
         loss.backward()
         print("loss.backward()", file=sys.stderr)
-        print(f"memory_allocated  = {torch.cuda.memory_allocated()}", file=sys.stderr)
+#        print(f"memory_allocated  = {torch.cuda.memory_allocated()}", file=sys.stderr)
         print("", file=sys.stderr)
 
         optimizer.step()
         print("optimizer.step()", file=sys.stderr)
-        print(f"memory_allocated  = {torch.cuda.memory_allocated()}", file=sys.stderr)
+#        print(f"memory_allocated  = {torch.cuda.memory_allocated()}", file=sys.stderr)
         print("", file=sys.stderr)
 
         # Print statistics
@@ -91,6 +91,7 @@ for epoch in range(5):
         print('loss: %.3f' % (running_loss), file=sys.stderr)
         running_loss = 0.0
 
-print(f"memory_allocated  = {torch.cuda.memory_allocated()}", file=sys.stderr)
+    
+#print(f"memory_allocated  = {torch.cuda.memory_allocated()}", file=sys.stderr)
 print('Finished Training', file=sys.stderr)
 
